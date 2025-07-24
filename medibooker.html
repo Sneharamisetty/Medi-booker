@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MediBooker-Online Doctor Appointment System</title>
+        <style>
+            body {
+                font-family:'Poppins', sans-serif;
+                background: linear-gradient(135deg, #e0f7fa, #80deea);
+                margin:0;
+                padding:0;
+              }
+              .container {
+                max-width:500px;
+                margin:50px auto;
+                background:#ffffff;
+                padding:20px;
+                border-radius:8px;
+                box-shadow:0 0 10px rgba(0,0,0,0.1);
+             }
+             h2 {
+                text-align:center;
+                margin-bottom:20px;
+             }
+             input, select, button {
+                width:100%;
+                padding:10px;
+                margin:10px 0;
+                border:1px solid #ccffee;
+                border-radius:5px;
+             }
+             button {
+                background-color:#007BFF;
+                color:white;
+                border:none;
+                cursor:pointer;
+             }
+             button:hover {
+                background-color:#0056b3;
+              }
+              .nav {
+                text-align:center;
+                margin-top:20px;
+            }
+            .nav a{
+                margin:0 10px;
+                color:#007BFF;
+                text-decoration:none;
+              }
+        </style>
+   </head>
+    <body>
+        <div class="container" id="login-section">
+            <h2>login</h2>
+            <input type="text" id="login-email" placeholder="Email"/>
+            <input type="password" id="login-password" placeholder="password"/>
+            <button onclick="login()">Login</button>
+            <div class="nav">
+                <a href="#" onclick="toggleSection('register-section')">Register</a>
+             </div>
+        </div>
+        <div class="container" id="register-section" style="display:none;">
+            <h2>Register</h2>
+            <input type="text" id="register-name" placeholder="Name" />
+            <input type="text" id="register-email" placeholder="Email" />
+            <input type="password" id="register-password" placeholder="Password" />
+            <select id="register-role">
+                <option value="patient">Patient</option>
+                <option value="doctor">Doctor</option>
+             </select>
+             <button onclick="register()">Register</button>
+             <div class="nav">
+                 <a href="#" onclick="toggleSection('login-section')">Back to Login</a>
+                 </div>
+             </div>
+             <div class="container" id="dashboard-section" style="display:none;">
+                <h2>Book Appointment</h2>
+                 <input type="text" id="patient-id" placeholder="Your ID" />
+                 <input type="text" id="doctor-id" placeholder="Doctor ID" />
+                 <input type="date" id="appointment-date" />
+                 <input type="time" id="appointment-time" />
+                 <button onclick="bookAppointment()">Book</button>
+                 <div class="nav">
+                    <a href="#" onclick="logout()">Logout</a>
+            </div>
+            </div>
+            <script>
+                function toggleSection(sectionId) {
+                    document.getElementById('login-section').style.display ='none';
+                    document.getElementById('register-section').style.display ='none';
+                     document.getElementById(sectionId).style.display ='block';
+                     }
+                function register() {
+                    const name = document.getElementById('register-name').value;
+                    const email = document.getElementById('register-email').value;
+                    const password = document.getElementById('register-password').value;
+                    const role = document.getElementById('register-role').value;
+                    alert(`Registered ${name} as ${role}`);
+                    toggleSection('login-section');
+                }
+                function bookAppointment() {
+                    const patientId = document.getElementById('patient-id').value;
+                    const doctorId = document.getElementById('doctor-id').value;
+                    const date = document.getElementById('appointment-date').value;
+                    const time = document.getElementById('appointment-time').value;
+                    alert(`Appointment booked with Dr.${doctorId}) on ${date} at ${time}`);
+                 }
+                 function logout() {
+                    toggleSection('login-section');
+                 }
+                 function login() {
+                    toggleSection('dashboard-section');
+                  }
+            </script>
+    </body>
+    </html>
